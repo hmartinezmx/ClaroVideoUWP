@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <title>Claro Video</title>
+
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/font-awesome.min.css" rel="stylesheet"/>
+    <link href="css/styles.min.css" rel="stylesheet" />
+</head>
+<body ng-app="ClaroVideoApp" ng-controller="getData">
+
+    <header>
+        <img src="images/claro-video-logo.jpg" alt="Claro Video" />
+    </header>
+    <div class="home" ng-if="page == 0">
+        <nav class="text-center">
+            <div class="search">
+                <label>Buscar</label>
+                <input type="search" ng-keyup="search($event)" ng-model="searchvalue"/>
+            </div>
+        </nav>
+
+        <div class="grid-content">
+            <div class="no-results" ng-show="items.length == 0">¡Lo sentimos! Parece que no hay coincidencias para: <b>{{searchvalue}}</b></div>
+            <div class="flex flex-wrap">
+                <div ng-repeat="item in items" class="item" ng-click="showDetail(item.Id)">
+                    <img ng-src="{{item.UrlImages.Horizontal}}" alt="{{item.Title}}" class="hidden-xs" />
+                    <img ng-src="{{item.UrlImages.Vertical}}" alt="{{item.Title}}" class="visible-xs-block" />
+                    <i class="fa fa-play-circle"></i>
+                    <div>
+                        <label>{{item.Title}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="detail" ng-if="page == 1">
+        <nav class="text-left">
+            <button class="btn-return" ng-click="selectPaga(0)"><i class="fa fa-arrow-left"></i></button> <label>{{detailItem.Title}}</label>
+        </nav>
+
+        <div class="grid-detail">
+            <div class="col-lg-4 col-sm-3 col-md-3 poster">
+                <img class="hidden-sm hidden-md" ng-src="{{detailItem.UrlImages.Horizontal}}" alt="{{detailItem.Title}}">
+                <img class="visible-sm visible-md" ng-src="{{detailItem.UrlImages.Vertical}}" alt="{{detailItem.Title}}">
+            </div>
+            <div class="col-lg-8 col-sm-9 detail-info">
+                <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-12 short-info">
+                            <b>{{detailItem.Title}} ({{detailItem.Year}})</b>
+                            <b>{{detailItem.Duration}}</b>
+                            <b>{{detailItem.RatingCode}}</b>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p class="col-xs-12">{{detailItem.DescriptionLarge}}</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul>
+                                <li>
+                                    <b>Género: </b><span>{{detailItem.Category}}</span>
+                                </li>
+                                <li>
+                                    <b>Actor: </b>
+                                    <span class="actor-card" ng-repeat="actor in detailItem.Actors.split('|')">{{actor}}</span>
+                                </li>
+                                <li>
+                                    <b>Director: </b>
+                                    <span class="director-card" ng-repeat="director in detailItem.Directors.split('|')">{{director}}</span>
+                                </li>
+                                <li>
+                                    <b>Título Original: </b><span>{{detailItem.TitleOriginal}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="loader" ng-show="loadContent"></div>
+    <script src="Scripts/jquery-2.2.4.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="js/controllers/clarovideo.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "css/styles.css",
+    "inputFile": "css/styles.less"
+  },
+  {
+    "outputFile": "js/controllers/clarovideo.min.js",
+    "inputFile": "js/controllers/clarovideo.js"
+  }
+]
