@@ -6,6 +6,7 @@ using System.Web;
 
 namespace ClaroVideoWebAPIs.Models
 {
+    //Modelo de un VCard
     public class VCard
     {
         public int Id { get; set; }

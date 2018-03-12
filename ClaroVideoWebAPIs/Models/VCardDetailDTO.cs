@@ -5,6 +5,7 @@ using System.Web;
 
 namespace ClaroVideoWebAPIs.Models
 {
+    //Modelo Data Transfer Objects para el detalle VCard, hereda las propiedades de VCardDTO
     public class VCardDetailDTO : VCardDTO
     {
         public string Actors { get; set; }

@@ -6,6 +6,7 @@ using System.Web;
 
 namespace ClaroVideoWebAPIs.Models
 {
+    //Modelo para categorias de peliculas
     public class Category
     {
         public int Id { get; set; }

@@ -18,14 +18,14 @@
         <nav class="text-center">
             <div class="search">
                 <label>Buscar</label>
-                <input type="search" ng-keyup="search($event)" ng-model="searchvalue"/>
+                <input type="search" ng-keyup="fns.search($event)" ng-model="value"/>
             </div>
         </nav>
 
         <div class="grid-content">
-            <div class="no-results" ng-show="items.length == 0">¡Lo sentimos! Parece que no hay coincidencias para: <b>{{searchvalue}}</b></div>
+            <div class="no-results" ng-show="items.length == 0">¡Lo sentimos! Parece que no hay coincidencias para: <b>{{value}}</b></div>
             <div class="flex flex-wrap">
-                <div ng-repeat="item in items" class="item" ng-click="showDetail(item.Id)">
+                <div ng-repeat="item in items" class="item" ng-click="fns.showDetail(item.Id)">
                     <img ng-src="{{item.UrlImages.Horizontal}}" alt="{{item.Title}}" class="hidden-xs" />
                     <img ng-src="{{item.UrlImages.Vertical}}" alt="{{item.Title}}" class="visible-xs-block" />
                     <i class="fa fa-play-circle"></i>
@@ -38,7 +38,7 @@
     </div>
     <div class="detail" ng-if="page == 1">
         <nav class="text-left">
-            <button class="btn-return" ng-click="selectPaga(0)"><i class="fa fa-arrow-left"></i></button> <label>{{detailItem.Title}}</label>
+            <button class="btn-return" ng-click="fns.selectPaga(0)"><i class="fa fa-arrow-left"></i></button> <label>{{detailItem.Title}}</label>
         </nav>
 
         <div class="grid-detail">
@@ -82,7 +82,7 @@
             </div>
         </div>
     </div>
-    <div class="loader" ng-show="loadContent"></div>
+    <div ng-class="{loader: loadContent}"></div>
     <script src="Scripts/jquery-2.2.4.min.js"></script>
     <script src="Scripts/angular.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>

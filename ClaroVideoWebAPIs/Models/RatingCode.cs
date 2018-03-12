@@ -6,6 +6,7 @@ using System.Web;
 
 namespace ClaroVideoWebAPIs.Models
 {
+    //Modelo para clasificacion de peliculas
     public class RatingCode
     {
         public int Id { get; set; }

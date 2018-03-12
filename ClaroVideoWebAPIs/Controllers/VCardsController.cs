@@ -12,7 +12,7 @@ using ClaroVideoWebAPIs.Models;
 
 namespace ClaroVideoWebAPIs.Controllers
 {
-
+    //Establece el permiso de acceso de la aplicacional al webapi
     [EnableCors(origins: "ms-appx-web:///index.html", headers: "*", methods: "*")]
     public class VCardsController : ApiController
     {
@@ -21,7 +21,10 @@ namespace ClaroVideoWebAPIs.Controllers
         // GET: api/VCards
         public IQueryable<VCardDTO> GetVCards()
         {
+            //Instincia de iyector con la dependencia para imagenes generales
             var images = new URLsImages(new GeneralImages());
+
+            //Obtiene todos los elementos de la tabla VCards, cada item genera una copia de datos a un nuevo modelo de tipo VCardDTO
             var vcard = (from b in db.VCards
                         select new VCardDTO()
                         {
@@ -30,6 +33,7 @@ namespace ClaroVideoWebAPIs.Controllers
                             UrlImages = new UrlImages() { Horizontal = b.URLImageH, Vertical = b.URLImageV } 
                         }).ToList();
 
+            //Itera los elementos para obtener las url de las imagenes generales
             foreach (VCardDTO item in vcard)
             {
                 item.UrlImages = images.GetImages(item.UrlImages.Vertical, item.UrlImages.Horizontal);
@@ -38,9 +42,13 @@ namespace ClaroVideoWebAPIs.Controllers
             return vcard.AsQueryable();
         }
 
+        // GET: api/StringSearch
         public IQueryable<VCardDTO> GetVCards(string text)
         {
+            //Instincia de iyector con la dependencia para imagenes generales
             var images = new URLsImages(new GeneralImages());
+
+            //Obtiene todos los elementos de la tabla VCards que contengan en el titulo el string de busqueda, cada item genera una copia de datos a un nuevo modelo de tipo VCardDTO
             var vcard = (from b in db.VCards
                         where b.Title.Contains(text)
                         select new VCardDTO()
@@ -50,6 +58,7 @@ namespace ClaroVideoWebAPIs.Controllers
                             UrlImages = new UrlImages() { Horizontal = b.URLImageH, Vertical = b.URLImageV }
                         }).ToList();
 
+            //Itera los elementos para obtener las url de las imagenes generales
             foreach (VCardDTO item in vcard)
             {
                 item.UrlImages = images.GetImages(item.UrlImages.Vertical, item.UrlImages.Horizontal);
@@ -62,7 +71,11 @@ namespace ClaroVideoWebAPIs.Controllers
         [ResponseType(typeof(VCardDetailDTO))]
         public async Task<IHttpActionResult> GetVCard(int id)
         {
+            //Instincia de iyector con la dependencia para imagenes del detalle
             var images = new URLsImages(new DetailImages());
+
+            //Obtiene el elementos de la tabla VCards con el id de busqueda, se genera un copia de datos al modelo VCardDetailDTO
+            //Se incluyen la relacion con las tablas Category y RatingCode
             var vCard = await db.VCards.Include(b => b.Category).Include(b => b.RatingCode).Select(b =>
                 new VCardDetailDTO()
                 {
@@ -81,7 +94,10 @@ namespace ClaroVideoWebAPIs.Controllers
                     Directors = b.Directors
                 }).SingleOrDefaultAsync(b => b.Id == id);
 
+            //Obtiene las urls de la imagenes para detalle
             vCard.UrlImages = images.GetImages(vCard.UrlImages.Vertical, vCard.UrlImages.Horizontal);
+
+            //Formatea la propiedad Duration {0}:{1}:{2} to {0}h {1} min {2}s
             var duration = vCard.Duration.Split(':');
             vCard.Duration = String.Format("{0}h {1} min {2}s", duration[0], duration[1], duration[2]);
 

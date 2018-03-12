@@ -208,6 +208,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\ClaroVideoWebAPIsContext.cs" />
+    <Compile Include="Models\InjectorImages.cs" />
     <Compile Include="Models\RatingCode.cs" />
     <Compile Include="Models\VCard.cs" />
     <Compile Include="Models\VCardDetailDTO.cs" />
