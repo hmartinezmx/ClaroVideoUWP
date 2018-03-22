@@ -62,16 +62,16 @@ PM> Update-Database
 Consideraciones
 --------------------------------------
 1. Se uso MSSQL Local DB en lugar de SQLite por que un no existe soporte total con EF en VS2017 [View Ticket](https://system.data.sqlite.org/index.html/tktview?name=8292431f51) (Cuando exista soporte oficial, es muy sencillo cambiar el proyecto a SQLite: cambiar el adaptador db y ejecutar el scaffold de EF).
-2. La aplicación UWP se hizo con WEB APIs EF Code Firts y UWP JS por lo que entendí de los requerimientos y la falta de respuesta a mis email sobre mis dudas.
+2. La aplicación UWP se hizo con WEB APIs EF Code Firts y UWP JS por lo que entendí de los requerimientos y la falta de respuesta a mi email sobre mis dudas.
 3. Se implemento un inyector de dependencias ´ClaroVideoWebAPIs\Models\InjectorImages.cs´
 4. Se utilizaron los patrones de diseño: Data Transfer Objects y Object Literals
 
 Screenshots
 --------------------------------------
 <div>
-<img src="https://raw.githubusercontent.com/hmartinezr/ClaroVideoUWP/master/screenshots/ss2.PNG" width="200">
-<img src="https://raw.githubusercontent.com/hmartinezr/ClaroVideoUWP/master/screenshots/ss3.PNG" width="200">
-<img src="https://raw.githubusercontent.com/hmartinezr/ClaroVideoUWP/master/screenshots/ss4.PNG" width="200">
-<img src="https://raw.githubusercontent.com/hmartinezr/ClaroVideoUWP/master/screenshots/ss5.PNG" width="340">
-<img src="https://raw.githubusercontent.com/hmartinezr/ClaroVideoUWP/master/screenshots/ss6.PNG" width="340">
+<img src="https://raw.githubusercontent.com/hmartinezmx/ClaroVideoUWP/master/screenshots/ss2.PNG" width="200">
+<img src="https://raw.githubusercontent.com/hmartinezmx/ClaroVideoUWP/master/screenshots/ss3.PNG" width="200">
+<img src="https://raw.githubusercontent.com/hmartinezmx/ClaroVideoUWP/master/screenshots/ss4.PNG" width="200">
+<img src="https://raw.githubusercontent.com/hmartinezmx/ClaroVideoUWP/master/screenshots/ss5.PNG" width="340">
+<img src="https://raw.githubusercontent.com/hmartinezmx/ClaroVideoUWP/master/screenshots/ss6.PNG" width="340">
 </div>
